@@ -101,7 +101,7 @@ def test(model, device, testloader):
             loss_fn = nn.NLLLoss(reduction='sum')
             running_test_loss += loss_fn(output, target).item()  # sum up batch loss
             pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
-#             correct += pred.eq(target.view_as(pred)).sum().item()
+            # correct += pred.eq(target.view_as(pred)).sum().item()  # not sure if it's this or the line below
             correct += pred.eq(target.data.view_as(pred)).sum()
     
     running_test_loss /= len(testloader.dataset)
